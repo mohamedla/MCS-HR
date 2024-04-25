@@ -1,42 +1,63 @@
-# MCS-HR
-A simple app to manage employee data 
+## MCS HR App
 
-Version .net 8.0
+**Version:** .NET 8.0
 
-Type ASP.NET MVC Application
+**Type:** ASP.NET MVC Application
 
-How to start?
- first dowload the folder 📂 or clone it using git
- then inside the folder find appsetting.json file an change database connection 'MCSHR' with you target db.
- --it must be Microsoft sql server database
- you can open the solution in side visual studio or you favorite ide 😀 and run the project and start editing if you like 
+### Getting Started
 
- if you want to just run the app you can go to bin -> release -> .net8.0
- you can use the content directly in the IIS and access it
+1. **Download or Clone:**
 
- when you start the app the first screen is the employee list screen 
- you will find 2 button in the top of the screen ucan use them to add employees using add new form or you could upload a tab delimited file
+   - Download the project folder or clone it using Git.
 
- under the 2 button there is a employees list table to display employee data with 2 button on the end of each row to edit and delete employee data with 2 fields to filter data by the employment type and overtime hour rate
+2. **Database Connection:**
 
- in employee data there is a column for each employee overtime hour value calculated as follow:
-o	In case of employee (Monthly) = Monthly salary /160
+   - Open `appsettings.json` and modify the `MCSHR` connection string to your target Microsoft SQL Server database.
 
-o	In case of worker (Hourly) = daily salary * 3 /16
+3. **Run the Project:**
 
-o	In case of Freelancer = Hour salary * 1.5
-the column get calculated on data retrieval
+   - Open the solution in Visual Studio or your preferred IDE.
+   - Run the project.
 
-improvement to do:
+4. **Alternative Deployment:**
 
-need employee list screen to be paged as if it had a lage set of data the sceen will load in longer time 
+   - Navigate to `bin/release/.net8.0`.
+   - Use the content directly in IIS and access the application.
 
-add search for the other data fields
+### Features
 
+* **Employee List Screen:**
 
-the forms for add, edit, and delete would be better and easy for the user experience to be in popup screen 
+   - Displays a list of all employees.
+   - Provides buttons for adding new employees and uploading a tab-delimited employee data file.
+   - Shows employee details with edit and delete buttons.
+   - Filters data by employment type and overtime hour rate.
+   - Calculates and displays overtime hours based on employee type.
 
-also add setup screen for overtime hour rate to modify the equation any time.
+* **Add, Edit, Delete Forms:**
 
+   - Currently accessed through the employee list screen.
+   - Planned improvement: Implement popup screens for better user experience.
 
-I will upate this list each time some thing change and if you have any ideas 💡 to improve the app don't hesitate to add it in a comment 😃.
+### Planned Improvements
+
+* **Pagination:**
+
+   - Implement pagination for the employee list screen to handle large datasets.
+
+* **Search:**
+
+   - Add search functionality for other employee data fields.
+
+* **Popup Forms:**
+
+   - Enhance user experience by moving add, edit, and delete forms to popup screens.
+
+* **Overtime Rate Setup:**
+
+   - Create a dedicated setup screen to modify overtime hour rate calculation formulas.
+
+### Contribution
+
+* This document will be updated with further changes and improvements.
+* Feel free to share your ideas for enhancing the application in the comments.
