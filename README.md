@@ -41,6 +41,11 @@
 
 ### Planned Improvements
 
+* **Error Handling:**
+
+   - Implement middle ware for error handling for the all application instead of try .. catch in every function
+ 
+
 * **Pagination:**
 
    - Implement pagination for the employee list screen to handle large datasets.
