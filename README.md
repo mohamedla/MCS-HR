@@ -2,6 +2,7 @@
 A simple app to manage employee data 
 
 Version .net 8.0
+
 Type ASP.NET MVC Application
 
 How to start?
@@ -28,10 +29,14 @@ the column get calculated on data retrieval
 
 improvement to do:
 
-need employee list screen to be paged as if it had a lage set of data the sceen will load in longer time also need to add search for the other data fields
+need employee list screen to be paged as if it had a lage set of data the sceen will load in longer time 
+
+add search for the other data fields
+
+
 the forms for add, edit, and delete would be better and easy for the user experience to be in popup screen 
 
+also add setup screen for overtime hour rate to modify the equation any time.
 
 
- 
- 
+I will upate this list each time some thing change and if you have any ideas 💡 to improve the app don't hesitate to add it in a comment 😃.
