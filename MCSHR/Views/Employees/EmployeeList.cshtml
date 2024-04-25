@@ -1,0 +1,127 @@
+﻿@model IEnumerable<MCSHR.Models.Employee>
+
+@{
+    ViewData["Title"] = "Employees";
+}
+
+<h1>Employees</h1>
+
+<p>
+    <a asp-action="AddNew" class="btn btn-primary mt-2 me-3">Create New</a>
+
+    <a asp-action="UploadFile" class="btn btn-primary mt-2">Add Employees From Files</a>
+</p>
+
+
+<label class="control-label fw-bold" for="filterSelect"> Filter By Payroll Type :</label>
+<select id="filterSelect" class="form-control my-2">
+    <option value="">All</option>
+    @foreach (EmployeeTypes type in Enum.GetValues(typeof(EmployeeTypes)))
+    {
+        <option value="@type">@type</option>
+    }
+</select>
+
+<label class="control-label fw-bold my-2" for="filterSelect"> Filter By Minimum Value For Overtime Hour Rate :</label>
+<input type="number" class="form-control" id="filterRate" />
+
+<hr />
+
+<table class="table" id="employeeTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Birthday)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Graduation)
+            </th>
+            <th>
+                Employment Type
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Assurance)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Salary)
+            </th>
+            <th>
+                Overtime Hour Rate
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Birthday)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Graduation)
+            </td>
+            <td class="filterOpt">
+                @Html.DisplayFor(modelItem => item.Emp_Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Assurance)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Salary)
+            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OvertimeHourRate)
+                </td>
+            <td>
+                    <a asp-action="Edit" class="btn btn-primary m-1" asp-route-id="@item.ID">Edit</a> |
+                    <a asp-action="Delete" class="btn btn-danger m-1" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#filterSelect").on("change", function () {
+                var filterKey = $(this).val().toLowerCase();
+                $("#employeeTable tbody tr").each(function () {
+                    var rowText = $(this).find("td:eq(4)").text().toLowerCase();
+
+                    if (filterKey === "" || rowText.indexOf(filterKey) > -1) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            });
+
+            $("#filterRate").on("change", function () {
+                var filterValue = parseFloat($(this).val());
+
+                $("#employeeTable tbody tr").each(function () {
+                    var cellValue = parseFloat($(this).find("td:eq(7)").text());
+
+                    if (isNaN(filterValue) || cellValue >= filterValue) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            });
+        });
+    </script>
+}

@@ -1,0 +1,83 @@
+﻿@model MCSHR.Models.EmployeeDTO
+
+@{
+    ViewData["Title"] = "AddNew";
+}
+
+<h1>AddNew</h1>
+
+<h4>Employee</h4>
+<hr />
+<div class="row">
+        @if (Model.IsResponse)
+        {
+            @if (Model.IsSuccess)
+            {
+                <div class="alert alert-success">
+                    @Model.Message
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-danger">
+                    @Model.Message
+                </div>
+            }
+        }
+    <div class="col-md-4">
+        <form asp-action="AddNew">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group mt-1">
+                <label asp-for="employee.Name" class="control-label"></label>
+                <input asp-for="employee.Name" class="form-control" />
+                <span asp-validation-for="employee.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-1">
+                <label asp-for="employee.Address" class="control-label"></label>
+                <input asp-for="employee.Address" class="form-control" />
+                <span asp-validation-for="employee.Address" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-1">
+                <label asp-for="employee.Birthday" class="control-label"></label>
+                <input asp-for="employee.Birthday" type="date" class="form-control" />
+                <span asp-validation-for="employee.Birthday" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-1">
+                <label asp-for="employee.Graduation" class="control-label"></label>
+                <input asp-for="employee.Graduation" class="form-control" />
+                <span asp-validation-for="employee.Graduation" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-1">
+                <label asp-for="employee.Emp_Type" class="control-label"> Payroll Type </label>
+                <select asp-for="employee.Emp_Type" class="form-control">
+                    @foreach (int value in Enum.GetValues(typeof(EmployeeTypes)))
+                    {
+                        <option value="@value">@((EmployeeTypes)value)</option>
+                    }
+                </select>
+                <span asp-validation-for="employee.Emp_Type" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check mt-1">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="employee.Assurance" /> @Html.DisplayNameFor(model => model.employee.Assurance)
+                </label>
+            </div>
+            <div class="form-group mt-1">
+                <label asp-for="employee.Salary" class="control-label"></label>
+                <input asp-for="employee.Salary" class="form-control" />
+                <span asp-validation-for="employee.Salary" class="text-danger"></span>
+            </div>
+            <div class="form-group my-2">
+                <input type="submit" value="Create" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a class="btn btn-primary" asp-action="EmployeeList">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
